@@ -1,0 +1,27 @@
+{
+    "name": "decodelabs/enlighten",
+    "description": "PHP source highlighter",
+    "type": "library",
+    "keywords": ["php", "source", "highlighter", "html"],
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Tom Wright",
+            "email": "tom@inflatablecookie.com"
+        }
+    ],
+    "require": {
+        "php": "^7.2",
+        "symfony/polyfill-mbstring": "^1.7"
+    },
+    "autoload": {
+        "psr-4": {
+            "DecodeLabs\\Enlighten\\": "src/"
+        }
+    },
+    "extra": {
+        "branch-alias": {
+            "dev-develop": "0.x-dev"
+        }
+    }
+}
