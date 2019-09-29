@@ -18,7 +18,7 @@ use DecodeLabs\Enlighten\Highlighter;
 
 $highlighter = new Highlighter();
 echo $highlighter->highlight($phpSourceCode); // Highlight source code in memory
-echo $highlighter->highlight($phpFile, 15, 35, 20); // Highlight specific lines (15 to 35) in file (focus on 20)
+echo $highlighter->highlightFile($phpFile, 15, 35, 20); // Highlight specific lines (15 to 35) in file (focus on 20)
 
 echo $highlighter->extract($phpSourceCode, 20); // Extract code around specific line
 echo $highlighter->extractFromFile($phpFile, 20); // Extract code around specific line
