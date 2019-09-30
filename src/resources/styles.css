@@ -1,12 +1,12 @@
 .source {
     --font-family: SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
-    --background: #444;
+    --background: #3F3F3F;
     --default-color: #DDD;
 
     --line-highlight: #4F5A5E;
-    --line-number: #D0A78B;
+    --line-number: #ADB5BD;
     --line-number-border: #666;
-    --line-number-background: #333;
+    --line-number-background: #52524F;
 
     --tag: #F76673;
     --grammar: #888;
@@ -72,6 +72,9 @@ samp.source span.line span.number {
     background: var(--line-number-background);
 }
 
+samp.source span.line.spacer {
+    display: flex;
+}
 samp.source span.line.spacer span.number {
     height: 0.5em;
     display: inline-block;
