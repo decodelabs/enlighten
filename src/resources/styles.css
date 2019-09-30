@@ -1,0 +1,171 @@
+.source {
+    --font-family: SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+    --background: #444;
+    --default-color: #DDD;
+
+    --line-highlight: #4F5A5E;
+    --line-number: #D0A78B;
+    --line-number-border: #666;
+    --line-number-background: #333;
+
+    --tag: #F76673;
+    --grammar: #888;
+    --keyword: #47D368;
+    --cast: #3CE0AF;
+    --operator: #ADB5BD;
+    --string: #F37782;
+    --string-quote: #ADB5BD;
+    --number: #C4A1FA;
+    --variable: #E9ECEF;
+    --comment: #DDB79E;
+    --html: #E83E8C;
+    --name: #DEE2E6;
+    --member: #ADB5BD;
+    --class: #8FE4F1;
+    --namespace: #4CD3E9;
+    --function: #C3DFFD;
+    --constant: #C7B5E7;
+    --scalar: #ED88B6;
+
+    color: var(--default-color);
+    font-family: var(--font-family);
+}
+
+samp.source {
+    overflow-x: auto;
+    padding: 0 !important;
+    white-space: normal !important;
+    background: var(--background);
+    display: block;
+    font-size: 1em;
+}
+
+samp.source span.line {
+    display: block;
+    width: 100%;
+    white-space: pre;
+    color: inherit;
+}
+
+samp.source span.line.spacer {
+    height: 0.5em;
+}
+
+samp.source span.line::after {
+    content: '';
+    padding-right: 1rem;
+}
+
+samp.source span.line.highlighted {
+    background: var(--line-highlight);
+}
+
+samp.source span.line span.number {
+    color: var(--line-number);
+    opacity: 0.4;
+    border-right: 2px solid var(--line-number-border);
+    display: inline-block;
+    width: 3.65em;
+    text-align: right;
+    padding-right: 0.3em;
+    margin-right: 0.5em;
+    background: var(--line-number-background);
+}
+
+samp.source span.line.spacer span.number {
+    height: 0.5em;
+    display: inline-block;
+}
+
+samp.source span.line.spacer::after {
+    display: none;
+}
+
+.source span.keyword {
+    color: var(--keyword);
+}
+
+.source span.keyword.flow {
+    font-weight: bold;
+}
+
+.source span.keyword.function + .name {
+    font-weight: bold;
+}
+
+.source .g {
+    color: var(--grammar);
+}
+
+.source .cast {
+    color: var(--cast);
+    font-style: italic;
+}
+
+.source .tag {
+    color: var(--tag);
+    font-weight: bold;
+}
+
+.source .operator {
+    color: var(--operator);
+}
+
+.source .string {
+    color: var(--string);
+}
+
+.source .string:before,
+.source .string:after {
+    content: attr(data-quote);
+    color: var(--string-quote);
+}
+
+.source .int,
+.source .float {
+    color: var(--number);
+    font-weight: bold;
+}
+
+.source .var {
+    color: var(--variable);
+}
+.source .var.this {
+    font-style: italic;
+}
+
+.source .comment {
+    color: var(--comment);
+}
+
+.source .html {
+    color: var(--html);
+}
+
+.source .name {
+    color: var(--name);
+}
+.source .name.return {
+    font-style: italic;
+}
+.source .name.member {
+    color: var(--member);
+}
+.source .name.class {
+    color: var(--class);
+}
+.source .name.namespace {
+    color: var(--namespace);
+}
+.source .name.function {
+    color: var(--function);
+}
+
+.source .constant {
+    color: var(--constant);
+}
+
+.source .bool,
+.source .null {
+    color: var(--scalar);
+}
