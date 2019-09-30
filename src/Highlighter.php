@@ -279,7 +279,9 @@ class Highlighter
                     case \T_CLASS:
                     case \T_USE:
                     case \T_NS_SEPARATOR:
+                    case \T_INSTANCEOF:
                         return 'class';
+
                 }
 
                 if ($maybeClassReturn) {
@@ -343,7 +345,6 @@ class Highlighter
             case 'implements':
             case 'include':
             case 'include-once':
-            case 'instanceof':
             case 'insteadof':
             case 'interface':
             case 'namespace':
@@ -417,7 +418,6 @@ class Highlighter
             case 'concat-equal':
             case 'dec':
             case 'div-equal':
-            case 'ellipsis':
             case 'inc':
             case 'is-equal':
             case 'is-greater-or-equal':
@@ -442,7 +442,12 @@ class Highlighter
             case 'sr':
             case 'sr-equal':
             case 'xor-equal':
-                return 'op '.$name;
+                return 'operator '.$name;
+
+            // Special operators
+            case 'ellipsis':
+            case 'instanceof':
+                return 'operator special '.$name;
 
             // Char
             case 'bad-character':

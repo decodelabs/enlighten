@@ -1,41 +1,43 @@
+:root {
+    --source-font-family: SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+    --source-background: var(--background, #3F3F3F);
+    --source-default-color: #DDD;
+    --source-tag: #F76673;
+    --source-grammar: var(--grammar, #ADB5BD);
+    --source-keyword: var(--keyword, #47D368);
+    --source-cast: #3CE0AF;
+    --source-operator: #ADB5BD;
+    --source-operator-special: #3CE0AF;
+    --source-string: var(--string, #F37782);
+    --source-string-quote: var(--grammar, #ADB5BD);
+    --source-number: var(--number, #C4A1FA);
+    --source-variable: #E9ECEF;
+    --source-comment: var(--comment, #DDB79E);
+    --source-html: #E83E8C;
+    --source-name: #DEE2E6;
+    --source-member: #ADB5BD;
+    --source-class: #8FE4F1;
+    --source-namespace: #4CD3E9;
+    --source-function: #C3DFFD;
+    --source-constant: var(--constant, #C7B5E7);
+    --source-scalar: var(--scalar, #F07EB2);
+
+    --source-line-highlight: #4F5A5E;
+    --source-line-number: #ADB5BD;
+    --source-line-number-border: #666;
+    --source-line-number-background: #52524F;
+}
+
 .source {
-    --font-family: SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
-    --background: #3F3F3F;
-    --default-color: #DDD;
-
-    --line-highlight: #4F5A5E;
-    --line-number: #ADB5BD;
-    --line-number-border: #666;
-    --line-number-background: #52524F;
-
-    --tag: #F76673;
-    --grammar: #888;
-    --keyword: #47D368;
-    --cast: #3CE0AF;
-    --operator: #ADB5BD;
-    --string: #F37782;
-    --string-quote: #ADB5BD;
-    --number: #C4A1FA;
-    --variable: #E9ECEF;
-    --comment: #DDB79E;
-    --html: #E83E8C;
-    --name: #DEE2E6;
-    --member: #ADB5BD;
-    --class: #8FE4F1;
-    --namespace: #4CD3E9;
-    --function: #C3DFFD;
-    --constant: #C7B5E7;
-    --scalar: #ED88B6;
-
-    color: var(--default-color);
-    font-family: var(--font-family);
+    color: var(--source-default-color);
+    font-family: var(--source-font-family);
 }
 
 samp.source {
     overflow-x: auto;
     padding: 0 !important;
     white-space: normal !important;
-    background: var(--background);
+    background: var(--source-background);
     display: block;
     font-size: 1em;
 }
@@ -57,19 +59,19 @@ samp.source span.line::after {
 }
 
 samp.source span.line.highlighted {
-    background: var(--line-highlight);
+    background: var(--source-line-highlight);
 }
 
 samp.source span.line span.number {
-    color: var(--line-number);
+    color: var(--source-line-number);
     opacity: 0.4;
-    border-right: 2px solid var(--line-number-border);
+    border-right: 2px solid var(--source-line-number-border);
     display: inline-block;
     width: 3.65em;
     text-align: right;
     padding-right: 0.3em;
     margin-right: 0.5em;
-    background: var(--line-number-background);
+    background: var(--source-line-number-background);
 }
 
 samp.source span.line.spacer {
@@ -85,7 +87,7 @@ samp.source span.line.spacer::after {
 }
 
 .source span.keyword {
-    color: var(--keyword);
+    color: var(--source-keyword);
 }
 
 .source span.keyword.flow {
@@ -97,78 +99,83 @@ samp.source span.line.spacer::after {
 }
 
 .source .g {
-    color: var(--grammar);
+    color: var(--source-grammar);
 }
 
 .source .cast {
-    color: var(--cast);
+    color: var(--source-cast);
     font-style: italic;
 }
 
 .source .tag {
-    color: var(--tag);
+    color: var(--source-tag);
     font-weight: bold;
 }
 
 .source .operator {
-    color: var(--operator);
+    color: var(--source-operator);
+}
+.source .operator.special {
+    color: var(--source-operator-special);
 }
 
 .source .string {
-    color: var(--string);
+    color: var(--source-string);
 }
 
 .source .string:before,
 .source .string:after {
     content: attr(data-quote);
-    color: var(--string-quote);
+    color: var(--source-string-quote);
 }
 
 .source .int,
 .source .float {
-    color: var(--number);
+    color: var(--source-number);
     font-weight: bold;
 }
 
 .source .var {
-    color: var(--variable);
+    color: var(--source-variable);
 }
 .source .var.this {
     font-style: italic;
 }
 
 .source .comment {
-    color: var(--comment);
+    color: var(--source-comment);
 }
 
 .source .html {
-    color: var(--html);
+    color: var(--source-html);
 }
 
 .source .name {
-    color: var(--name);
+    color: var(--source-name);
 }
 .source .name.return {
     font-style: italic;
 }
 .source .name.member {
-    color: var(--member);
+    color: var(--source-member);
 }
 .source .name.class {
-    color: var(--class);
+    color: var(--source-class);
 }
 .source .name.namespace {
-    color: var(--namespace);
+    color: var(--source-namespace);
 }
 .source .name.function {
-    color: var(--function);
+    color: var(--source-function);
 }
 
 .source .constant {
-    color: var(--constant);
+    color: var(--source-constant);
 }
 
 .source .bool,
 .source .null {
-    color: var(--scalar);
+    color: var(--source-scalar);
+    font-weight: 600;
+    font-style: italic;
 }
