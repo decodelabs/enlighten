@@ -115,7 +115,7 @@ class Highlighter
                         $type = $this->getNameType($history, $tokens);
 
                         if ($type !== null) {
-                            $name .= ' '.$type;
+                            $name = $type;
                         }
                         break;
                 }
