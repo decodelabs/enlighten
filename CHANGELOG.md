@@ -1,3 +1,6 @@
+## v0.6.1 (2019-09-30)
+* Updated default styles
+
 ## v0.6.0 (2019-09-30)
 * Added css stylesheet
 
