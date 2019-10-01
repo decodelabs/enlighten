@@ -277,6 +277,8 @@ class Highlighter
                     case \T_EXTENDS:
                     case \T_IMPLEMENTS:
                     case \T_CLASS:
+                    case \T_TRAIT:
+                    case \T_INTERFACE:
                     case \T_USE:
                     case \T_NS_SEPARATOR:
                     case \T_INSTANCEOF:

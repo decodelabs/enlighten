@@ -1,3 +1,6 @@
+## v0.6.2 (2019-10-1)
+* Fixed return key name bug
+
 ## v0.6.1 (2019-09-30)
 * Updated default styles
 
