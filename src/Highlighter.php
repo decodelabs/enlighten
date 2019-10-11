@@ -9,6 +9,18 @@ namespace DecodeLabs\Enlighten;
 class Highlighter
 {
     /**
+     * Extract a specific line from file with $buffer lines around it
+     */
+    public function extractFromFile(string $path, int $line, int $buffer=8): string
+    {
+        if (!file_exists($path)) {
+            return '';
+        }
+
+        return $this->extract(file_get_contents($path), $line, $buffer);
+    }
+
+    /**
      * Extract a specific line with $buffer lines around it
      */
     public function extract(string $source, int $line, int $buffer=8): string
@@ -22,15 +34,15 @@ class Highlighter
     }
 
     /**
-     * Extract a specific line from file with $buffer lines around it
+     * Highlight PHP source from file from $startLine to $endLine, focussing on $highlight
      */
-    public function extractFromFile(string $path, int $line, int $buffer=8): string
+    public function highlightFile(string $path, ?int $startLine=null, ?int $endLine=null, ?int $highlight=null): string
     {
         if (!file_exists($path)) {
             return '';
         }
 
-        return $this->extract(file_get_contents($path), $line, $buffer);
+        return $this->highlight(file_get_contents($path), $startLine, $endLine, $highlight);
     }
 
     /**
@@ -38,8 +50,23 @@ class Highlighter
      */
     public function highlight(string $source, ?int $startLine=null, ?int $endLine=null, ?int $highlight=null): string
     {
+        try {
+            return $this->processTokens($source, $startLine, $endLine, $highlight);
+        } catch (\Throwable $e) {
+            return $this->processRaw($source, $startLine, $endLine, $highlight);
+        }
+    }
+
+    /**
+     * Tokenize and highlight file with full parsing
+     */
+    protected function processTokens(string $source, ?int $startLine=null, ?int $endLine=null, ?int $highlight=null): string
+    {
         if ($startLine !== null) {
             $startLine = max(1, $startLine);
+        }
+        if ($endLine !== null && $startLine === null) {
+            $startLine = 1;
         }
 
         try {
@@ -51,11 +78,6 @@ class Highlighter
         }
 
         $source = '';
-
-        if ($endLine !== null && $startLine === null) {
-            $startLine = 1;
-        }
-
         $lastLine = 1;
         $history = [];
 
@@ -180,15 +202,47 @@ class Highlighter
     }
 
     /**
-     * Highlight PHP source from file from $startLine to $endLine, focussing on $highlight
+     * Process raw text without parsing as a fallback
      */
-    public function highlightFile(string $path, ?int $startLine=null, ?int $endLine=null, ?int $highlight=null): string
+    protected function processRaw(string $source, ?int $startLine=null, ?int $endLine=null, ?int $highlight=null): string
     {
-        if (!file_exists($path)) {
-            return '';
+        if ($startLine !== null) {
+            $startLine = max(1, $startLine);
+        }
+        if ($endLine !== null && $startLine === null) {
+            $startLine = 1;
         }
 
-        return $this->highlight(file_get_contents($path), $startLine, $endLine, $highlight);
+        $lines = explode("\n", str_replace("\r\n", "\n", $source));
+        $count = count($lines);
+
+        if ($endLine !== null) {
+            $length = $endLine - ($startLine - 1);
+        } else {
+            $length = $count - ($startLine - 1);
+        }
+
+        $lines = array_slice($lines, $startLine - 1, $length, true);
+        $output = [];
+
+        if ($startLine > 1) {
+            $output[] = '<span class="line"><span class="number x">…</span></span>';
+        } else {
+            $output[] = '<span class="line spacer"><span class="number x"></span></span>';
+        }
+
+        foreach ($lines as $i => $line) {
+            $i += 1;
+            $output[] = '<span class="line'.($i === $highlight ? ' highlighted' : null).'"><span class="number">'.$i.'</span>'.$line.'</span>';
+        }
+
+        if ($endLine !== null && $count > $endLine) {
+            $output[] = '<span class="line"><span class="number x">…</span></span>';
+        } else {
+            $output[] = '<span class="line spacer"><span class="number x"></span></span>';
+        }
+
+        return '<samp class="source error">'.implode("\n", $output).'</samp>';
     }
 
     /**
