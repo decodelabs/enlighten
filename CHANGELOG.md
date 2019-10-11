@@ -1,4 +1,7 @@
-## v0.6.2 (2019-10-1)
+## v0.6.3 (2019-10-11)
+* Wrap parse errors in Glitch exceptions
+
+## v0.6.2 (2019-10-01)
 * Fixed return key name bug
 
 ## v0.6.1 (2019-09-30)
