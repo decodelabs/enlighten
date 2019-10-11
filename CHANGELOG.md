@@ -1,3 +1,6 @@
+## v0.7.0 (2019-10-11)
+* Added raw processor to ensure output for parse errors
+
 ## v0.6.3 (2019-10-11)
 * Wrap parse errors in Glitch exceptions
 
