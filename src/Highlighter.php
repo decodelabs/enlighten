@@ -42,7 +42,14 @@ class Highlighter
             $startLine = max(1, $startLine);
         }
 
-        $tokens = token_get_all($source, \TOKEN_PARSE);
+        try {
+            $tokens = token_get_all($source, \TOKEN_PARSE);
+        } catch (\ParseError $e) {
+            throw Glitch::EUnexpectedValue('Unable to parse PHP source', [
+                'previous' => $e
+            ], $source);
+        }
+
         $source = '';
 
         if ($endLine !== null && $startLine === null) {
