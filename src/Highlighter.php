@@ -6,6 +6,8 @@
 declare(strict_types=1);
 namespace DecodeLabs\Enlighten;
 
+use DecodeLabs\Glitch;
+
 class Highlighter
 {
     /**
@@ -17,7 +19,11 @@ class Highlighter
             return '';
         }
 
-        return $this->extract(file_get_contents($path), $line, $buffer);
+        if (false === ($source = file_get_contents($path))) {
+            throw Glitch::EIo('Could not load source from file: '.$path);
+        }
+
+        return $this->extract($source, $line, $buffer);
     }
 
     /**
@@ -42,7 +48,11 @@ class Highlighter
             return '';
         }
 
-        return $this->highlight(file_get_contents($path), $startLine, $endLine, $highlight);
+        if (false === ($source = file_get_contents($path))) {
+            throw Glitch::EIo('Could not load source from file: '.$path);
+        }
+
+        return $this->highlight($source, $startLine, $endLine, $highlight);
     }
 
     /**
@@ -122,6 +132,7 @@ class Highlighter
 
                 $attrs = [];
                 $name = $this->normalizeName($origName = $name);
+                $tokenContent = (string)$token[1];
 
                 switch ($origName) {
                     case 'whitespace':
@@ -129,8 +140,8 @@ class Highlighter
                         continue 2;
 
                     case 'constant-encapsed-string':
-                        $quote = substr($token[1], 0, 1);
-                        $token[1] = substr($token[1], 1, -1);
+                        $quote = substr($tokenContent, 0, 1);
+                        $token[1] = substr($tokenContent, 1, -1);
                         $attrs['data-quote'] = $quote;
                         break;
 
@@ -150,7 +161,7 @@ class Highlighter
                 }
 
 
-                $inner = explode("\n", str_replace("\r", '', $token[1]));
+                $inner = explode("\n", str_replace("\r", '', $tokenContent));
 
                 foreach ($attrs as $key => $val) {
                     $attrs[$key] = ' '.$key.'="'.$this->esc($val).'"';
