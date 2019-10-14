@@ -141,7 +141,7 @@ class Highlighter
 
                     case 'constant-encapsed-string':
                         $quote = substr($tokenContent, 0, 1);
-                        $token[1] = substr($tokenContent, 1, -1);
+                        $tokenContent = $token[1] = substr($tokenContent, 1, -1);
                         $attrs['data-quote'] = $quote;
                         break;
 
