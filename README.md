@@ -35,4 +35,4 @@ echo $highlighter->extractFromFile($phpFile, 20); // Extract code around specifi
 
 
 ## Licensing
-Enlighten is licensed under the MIT License. See [LICENSE](https://github.com/decodelabs/enlighten/blob/master/LICENSE) for the full license text.
+Enlighten is licensed under the MIT License. See [LICENSE](./LICENSE) for the full license text.
