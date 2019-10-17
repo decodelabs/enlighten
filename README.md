@@ -1,4 +1,10 @@
 # Enlighten
+
+[![Latest Version](https://img.shields.io/packagist/v/decodelabs/enlighten.svg?style=flat-square)](https://packagist.org/packages/decodelabs/enlighten)
+[![Total Downloads](https://img.shields.io/packagist/dt/decodelabs/enlighten.svg?style=flat-square)](https://packagist.org/packages/decodelabs/enlighten)
+[![Build Status](https://img.shields.io/travis/decodelabs/enlighten/develop.svg?style=flat-square)](https://travis-ci.org/decodelabs/enlighten)
+[![PHPStan](https://img.shields.io/badge/PHPStan-enabled-44CC11.svg?longCache=true&style=flat-square)](https://github.com/phpstan/phpstan)
+
 PHP source highlighter
 
 ## Installation
@@ -29,4 +35,4 @@ echo $highlighter->extractFromFile($phpFile, 20); // Extract code around specifi
 
 
 ## Licensing
-Enlighten is licensed under the MIT License. See [LICENSE](https://github.com/decodelabs/glitch/blob/master/LICENSE) for the full license text.
+Enlighten is licensed under the MIT License. See [LICENSE](https://github.com/decodelabs/enlighten/blob/master/LICENSE) for the full license text.
