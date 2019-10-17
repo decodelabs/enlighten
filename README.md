@@ -1,5 +1,6 @@
 # Enlighten
 
+[![PHP from Packagist](https://img.shields.io/packagist/php-v/decodelabs/enlighten?style=flat-square)](https://packagist.org/packages/decodelabs/enlighten)
 [![Latest Version](https://img.shields.io/packagist/v/decodelabs/enlighten.svg?style=flat-square)](https://packagist.org/packages/decodelabs/enlighten)
 [![Total Downloads](https://img.shields.io/packagist/dt/decodelabs/enlighten.svg?style=flat-square)](https://packagist.org/packages/decodelabs/enlighten)
 [![Build Status](https://img.shields.io/travis/decodelabs/enlighten/develop.svg?style=flat-square)](https://travis-ci.org/decodelabs/enlighten)
