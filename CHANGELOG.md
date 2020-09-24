@@ -1,3 +1,6 @@
+## v0.7.2 (2020-09-24)
+* Updated Glitch dependency
+
 ## v0.7.1 (2019-10-16)
 * Added PHPStan support
 * Bugfixes and updates from max level PHPStan scan
