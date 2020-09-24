@@ -1,3 +1,6 @@
+## v0.7.3 (2020-09-24)
+* Use ^ for Glitch dependency
+
 ## v0.7.2 (2020-09-24)
 * Updated Glitch dependency
 
