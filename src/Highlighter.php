@@ -590,6 +590,9 @@ class Highlighter
             // Name
             case 'string':
                 return 'name';
+
+            default:
+                return $name;
         }
     }
 
