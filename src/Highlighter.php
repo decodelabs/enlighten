@@ -6,7 +6,7 @@
 declare(strict_types=1);
 namespace DecodeLabs\Enlighten;
 
-use DecodeLabs\Glitch;
+use DecodeLabs\Exceptional;
 
 class Highlighter
 {
@@ -20,7 +20,9 @@ class Highlighter
         }
 
         if (false === ($source = file_get_contents($path))) {
-            throw Glitch::EIo('Could not load source from file: '.$path);
+            throw Exceptional::Io(
+                'Could not load source from file: '.$path
+            );
         }
 
         return $this->extract($source, $line, $buffer);
@@ -49,7 +51,9 @@ class Highlighter
         }
 
         if (false === ($source = file_get_contents($path))) {
-            throw Glitch::EIo('Could not load source from file: '.$path);
+            throw Exceptional::Io(
+                'Could not load source from file: '.$path
+            );
         }
 
         return $this->highlight($source, $startLine, $endLine, $highlight);
@@ -82,9 +86,11 @@ class Highlighter
         try {
             $tokens = token_get_all($source, \TOKEN_PARSE);
         } catch (\ParseError $e) {
-            throw Glitch::EUnexpectedValue('Unable to parse PHP source', [
-                'previous' => $e
-            ], $source);
+            throw Exceptional::UnexpectedValue(
+                'Unable to parse PHP source',
+                ['previous' => $e],
+                $source
+            );
         }
 
         $source = '';
@@ -590,6 +596,9 @@ class Highlighter
             // Name
             case 'string':
                 return 'name';
+
+            default:
+                return $name;
         }
     }
 
