@@ -344,16 +344,10 @@ class Highlighter
                         return 'constant';
 
                     case \T_PAAMAYIM_NEKUDOTAYIM:
-                        if (!$maybeFunction) {
-                            return 'constant';
-                        }
-                        return null;
+                        return 'constant';
 
                     case \T_OBJECT_OPERATOR:
-                        if (!$maybeFunction) {
-                            return 'member';
-                        }
-                        return null;
+                        return 'member';
 
                     case \T_EXTENDS:
                     case \T_IMPLEMENTS:
