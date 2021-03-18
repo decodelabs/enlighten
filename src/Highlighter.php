@@ -1,9 +1,12 @@
 <?php
+
 /**
- * This file is part of the Enlighten package
+ * @package Enlighten
  * @license http://opensource.org/licenses/MIT
  */
+
 declare(strict_types=1);
+
 namespace DecodeLabs\Enlighten;
 
 use DecodeLabs\Exceptional;
@@ -13,7 +16,7 @@ class Highlighter
     /**
      * Extract a specific line from file with $buffer lines around it
      */
-    public function extractFromFile(string $path, int $line, int $buffer=8): string
+    public function extractFromFile(string $path, int $line, int $buffer = 8): string
     {
         if (!file_exists($path)) {
             return '';
@@ -21,7 +24,7 @@ class Highlighter
 
         if (false === ($source = file_get_contents($path))) {
             throw Exceptional::Io(
-                'Could not load source from file: '.$path
+                'Could not load source from file: ' . $path
             );
         }
 
@@ -31,7 +34,7 @@ class Highlighter
     /**
      * Extract a specific line with $buffer lines around it
      */
-    public function extract(string $source, int $line, int $buffer=8): string
+    public function extract(string $source, int $line, int $buffer = 8): string
     {
         $line = max(1, $line);
         $buffer = min(30, max(1, $buffer));
@@ -44,7 +47,7 @@ class Highlighter
     /**
      * Highlight PHP source from file from $startLine to $endLine, focussing on $highlight
      */
-    public function highlightFile(string $path, ?int $startLine=null, ?int $endLine=null, ?int $highlight=null): string
+    public function highlightFile(string $path, ?int $startLine = null, ?int $endLine = null, ?int $highlight = null): string
     {
         if (!file_exists($path)) {
             return '';
@@ -52,7 +55,7 @@ class Highlighter
 
         if (false === ($source = file_get_contents($path))) {
             throw Exceptional::Io(
-                'Could not load source from file: '.$path
+                'Could not load source from file: ' . $path
             );
         }
 
@@ -62,7 +65,7 @@ class Highlighter
     /**
      * Highlight PHP source from $startLine to $endLine, focussing on $highlight
      */
-    public function highlight(string $source, ?int $startLine=null, ?int $endLine=null, ?int $highlight=null): string
+    public function highlight(string $source, ?int $startLine = null, ?int $endLine = null, ?int $highlight = null): string
     {
         try {
             return $this->processTokens($source, $startLine, $endLine, $highlight);
@@ -74,7 +77,7 @@ class Highlighter
     /**
      * Tokenize and highlight file with full parsing
      */
-    protected function processTokens(string $source, ?int $startLine=null, ?int $endLine=null, ?int $highlight=null): string
+    protected function processTokens(string $source, ?int $startLine = null, ?int $endLine = null, ?int $highlight = null): string
     {
         if ($startLine !== null) {
             $startLine = max(1, $startLine);
@@ -170,14 +173,14 @@ class Highlighter
                 $inner = explode("\n", str_replace("\r", '', $tokenContent));
 
                 foreach ($attrs as $key => $val) {
-                    $attrs[$key] = ' '.$key.'="'.$this->esc($val).'"';
+                    $attrs[$key] = ' ' . $key . '="' . $this->esc($val) . '"';
                 }
 
                 $attrs = implode($attrs);
 
                 foreach ($inner as &$part) {
                     if (!empty($part)) {
-                        $part = '<span class="'.$name.'"'.$attrs.'>'.$this->esc($part).'</span>';
+                        $part = '<span class="' . $name . '"' . $attrs . '>' . $this->esc($part) . '</span>';
                     }
                 }
 
@@ -190,7 +193,7 @@ class Highlighter
                     break;
                 }
 
-                $source .= '<span class="g">'.$this->esc($token).'</span>';
+                $source .= '<span class="g">' . $this->esc($token) . '</span>';
             }
         }
 
@@ -205,7 +208,7 @@ class Highlighter
         }
 
         foreach ($lines as $line) {
-            $output[] = '<span class="line'.($i === $highlight ? ' highlighted' : null).'"><span class="number">'.$i.'</span>'.$line.'</span>';
+            $output[] = '<span class="line' . ($i === $highlight ? ' highlighted' : null) . '"><span class="number">' . $i . '</span>' . $line . '</span>';
             $i++;
         }
 
@@ -215,13 +218,13 @@ class Highlighter
             $output[] = '<span class="line spacer"><span class="number x"></span></span>';
         }
 
-        return '<samp class="source">'.implode("\n", $output).'</samp>';
+        return '<samp class="source">' . implode("\n", $output) . '</samp>';
     }
 
     /**
      * Process raw text without parsing as a fallback
      */
-    protected function processRaw(string $source, ?int $startLine=null, ?int $endLine=null, ?int $highlight=null): string
+    protected function processRaw(string $source, ?int $startLine = null, ?int $endLine = null, ?int $highlight = null): string
     {
         if ($startLine !== null) {
             $startLine = max(1, $startLine);
@@ -250,7 +253,7 @@ class Highlighter
 
         foreach ($lines as $i => $line) {
             $i += 1;
-            $output[] = '<span class="line'.($i === $highlight ? ' highlighted' : null).'"><span class="number">'.$i.'</span>'.$line.'</span>';
+            $output[] = '<span class="line' . ($i === $highlight ? ' highlighted' : null) . '"><span class="number">' . $i . '</span>' . $line . '</span>';
         }
 
         if ($endLine !== null && $count > $endLine) {
@@ -259,7 +262,7 @@ class Highlighter
             $output[] = '<span class="line spacer"><span class="number x"></span></span>';
         }
 
-        return '<samp class="source error">'.implode("\n", $output).'</samp>';
+        return '<samp class="source error">' . implode("\n", $output) . '</samp>';
     }
 
     /**
@@ -341,16 +344,10 @@ class Highlighter
                         return 'constant';
 
                     case \T_PAAMAYIM_NEKUDOTAYIM:
-                        if (!$maybeFunction) {
-                            return 'constant';
-                        }
-                        return null;
+                        return 'constant';
 
                     case \T_OBJECT_OPERATOR:
-                        if (!$maybeFunction) {
-                            return 'member';
-                        }
-                        return null;
+                        return 'member';
 
                     case \T_EXTENDS:
                     case \T_IMPLEMENTS:
@@ -439,7 +436,7 @@ class Highlighter
             case 'trait':
             case 'use':
             case 'var':
-                return 'keyword '.$name;
+                return 'keyword ' . $name;
 
             // Flow control keywords
             case 'break':
@@ -467,12 +464,12 @@ class Highlighter
             case 'while':
             case 'yield':
             case 'yield-from':
-                return 'keyword flow '.$name;
+                return 'keyword flow ' . $name;
 
 
             // Types
             case 'callable':
-                return 'type '.$name;
+                return 'type ' . $name;
 
             // Casts
             case 'array-cast':
@@ -482,13 +479,13 @@ class Highlighter
             case 'object-cast':
             case 'string-cast':
             case 'unset-cast':
-                return 'cast '.$name;
+                return 'cast ' . $name;
 
             // Tags
             case 'close-tag':
             case 'open-tag':
             case 'open-tag-with-echo':
-                return 'tag '.$name;
+                return 'tag ' . $name;
 
             // Operator
             case 'and-equal':
@@ -522,17 +519,17 @@ class Highlighter
             case 'sr':
             case 'sr-equal':
             case 'xor-equal':
-                return 'operator '.$name;
+                return 'operator ' . $name;
 
             // Special operators
             case 'ellipsis':
             case 'instanceof':
-                return 'operator special '.$name;
+                return 'operator special ' . $name;
 
             // Char
             case 'bad-character':
             case 'character':
-                return 'char '.$name;
+                return 'char ' . $name;
 
             // Const
             case 'class-c':
@@ -543,7 +540,7 @@ class Highlighter
             case 'method-c':
             case 'ns-c':
             case 'trait-c':
-                return 'constant '.$name;
+                return 'constant ' . $name;
 
             // Function
             case 'empty':
@@ -552,18 +549,18 @@ class Highlighter
             case 'isset':
             case 'list':
             case 'unset':
-                return 'func '.$name;
+                return 'func ' . $name;
 
             // Variable
             case 'num-string':
             case 'string-varname':
             case 'variable':
-                return 'var '.$name;
+                return 'var ' . $name;
 
             // String
             case 'encapsed-and-whitespace':
             case 'constant-encapsed-string':
-                return 'string '.$name;
+                return 'string ' . $name;
 
             // Number
             case 'dnumber':
@@ -581,13 +578,13 @@ class Highlighter
             case 'object-operator':
             case 'start-heredoc':
             case 'whitespace':
-                return 'g '.$name;
+                return 'g ' . $name;
 
             // Comment
             case 'comment':
                 return $name;
             case 'doc-comment':
-                return 'comment '.$name;
+                return 'comment ' . $name;
 
             // Html
             case 'inline-html':
@@ -608,6 +605,6 @@ class Highlighter
      */
     public function exportInlineStyles(): string
     {
-        return '<style>'."\n".file_get_contents(__DIR__.'/resources/styles.css')."\n".'</style>';
+        return '<style>' . "\n" . file_get_contents(__DIR__ . '/resources/styles.css') . "\n" . '</style>';
     }
 }
