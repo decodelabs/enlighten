@@ -269,6 +269,9 @@ class Highlighter
 
     /**
      * Attempt to parse name token type
+     *
+     * @param array<int, mixed> $history
+     * @param array<int, mixed> $tokens
      */
     protected function getNameType(array $history, array $tokens): ?string
     {
