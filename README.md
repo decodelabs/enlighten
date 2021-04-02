@@ -17,6 +17,13 @@ Install using Composer:
 composer require decodelabs/enlighten
 ```
 
+### PHP version
+
+_Please note, the final v1 releases of all Decode Labs libraries will target **PHP8** or above._
+
+Current support for earlier versions of PHP will be phased out in the coming months.
+
+
 ## Usage
 Enlighten uses the PHP tokenizer extension which requires the full source from file (including <code>&lt;?php</code> open tag).
 

@@ -10,6 +10,8 @@ declare(strict_types=1);
 namespace DecodeLabs\Enlighten;
 
 use DecodeLabs\Exceptional;
+use ParseError;
+use Throwable;
 
 class Highlighter
 {
@@ -69,7 +71,7 @@ class Highlighter
     {
         try {
             return $this->processTokens($source, $startLine, $endLine, $highlight);
-        } catch (\Throwable $e) {
+        } catch (Throwable $e) {
             return $this->processRaw($source, $startLine, $endLine, $highlight);
         }
     }
@@ -88,7 +90,7 @@ class Highlighter
 
         try {
             $tokens = token_get_all($source, \TOKEN_PARSE);
-        } catch (\ParseError $e) {
+        } catch (ParseError $e) {
             throw Exceptional::UnexpectedValue(
                 'Unable to parse PHP source',
                 ['previous' => $e],
@@ -267,6 +269,9 @@ class Highlighter
 
     /**
      * Attempt to parse name token type
+     *
+     * @param array<int, mixed> $history
+     * @param array<int, mixed> $tokens
      */
     protected function getNameType(array $history, array $tokens): ?string
     {
