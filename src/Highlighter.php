@@ -9,6 +9,7 @@ declare(strict_types=1);
 
 namespace DecodeLabs\Enlighten;
 
+use DecodeLabs\Coercion;
 use DecodeLabs\Exceptional;
 use ParseError;
 use Throwable;
@@ -275,9 +276,9 @@ class Highlighter
      */
     protected function getNameType(array $history, array $tokens): ?string
     {
-        $current = array_shift($history);
+        $current = Coercion::toArrayOrNull(array_shift($history));
 
-        switch ($current[1]) {
+        switch ($current[1] ?? null) {
             case 'null':
                 return 'null';
 
@@ -288,7 +289,8 @@ class Highlighter
 
         $maybeFunction = $maybeClassReturn = false;
 
-        switch ($tokens[0][0]) {
+        /* @phpstan-ignore-next-line */
+        switch ($tokens[0][0] ?? null) {
             case \T_OBJECT_OPERATOR:
                 return 'member';
 
@@ -302,7 +304,8 @@ class Highlighter
                 return 'class';
 
             case \T_WHITESPACE:
-                switch ($tokens[1][0]) {
+                /* @phpstan-ignore-next-line */
+                switch ($tokens[1][0] ?? null) {
                     case \T_VARIABLE:
                     case \T_ELLIPSIS:
                         return 'class';
@@ -318,7 +321,13 @@ class Highlighter
             $maybeFunction = true;
         }
 
-        if (preg_match('/^[A-Z_]+$/', $current[1]) && !$maybeFunction) {
+        if (
+            preg_match(
+                '/^[A-Z_]+$/',
+                Coercion::toStringOrNull($current[1] ?? null) ?? ''
+            ) &&
+            !$maybeFunction
+        ) {
             return 'constant';
         }
 
