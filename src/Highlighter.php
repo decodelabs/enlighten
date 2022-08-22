@@ -418,7 +418,6 @@ class Highlighter
     protected function normalizeName(string $name): string
     {
         switch ($name) {
-            // Keywords
             case 'abstract':
             case 'array':
             case 'as':
@@ -452,7 +451,6 @@ class Highlighter
             case 'var':
                 return 'keyword ' . $name;
 
-            // Flow control keywords
             case 'break':
             case 'case':
             case 'catch':
@@ -480,12 +478,9 @@ class Highlighter
             case 'yield-from':
                 return 'keyword flow ' . $name;
 
-
-            // Types
             case 'callable':
                 return 'type ' . $name;
 
-            // Casts
             case 'array-cast':
             case 'bool-cast':
             case 'double-cast':
@@ -495,13 +490,11 @@ class Highlighter
             case 'unset-cast':
                 return 'cast ' . $name;
 
-            // Tags
             case 'close-tag':
             case 'open-tag':
             case 'open-tag-with-echo':
                 return 'tag ' . $name;
 
-            // Operator
             case 'and-equal':
             case 'boolean-and':
             case 'boolean-or':
@@ -535,17 +528,14 @@ class Highlighter
             case 'xor-equal':
                 return 'operator ' . $name;
 
-            // Special operators
             case 'ellipsis':
             case 'instanceof':
                 return 'operator special ' . $name;
 
-            // Char
             case 'bad-character':
             case 'character':
                 return 'char ' . $name;
 
-            // Const
             case 'class-c':
             case 'dir':
             case 'file':
@@ -556,7 +546,6 @@ class Highlighter
             case 'trait-c':
                 return 'constant ' . $name;
 
-            // Function
             case 'empty':
             case 'eval':
             case 'halt-compiler':
@@ -565,24 +554,20 @@ class Highlighter
             case 'unset':
                 return 'func ' . $name;
 
-            // Variable
             case 'num-string':
             case 'string-varname':
             case 'variable':
                 return 'var ' . $name;
 
-            // String
             case 'encapsed-and-whitespace':
             case 'constant-encapsed-string':
                 return 'string ' . $name;
 
-            // Number
             case 'dnumber':
                 return 'float';
             case 'lnumber':
                 return 'int';
 
-            // Grammar
             case 'curly-open':
             case 'dollar-open-curly-braces':
             case 'double-arrow':
@@ -594,17 +579,14 @@ class Highlighter
             case 'whitespace':
                 return 'g ' . $name;
 
-            // Comment
             case 'comment':
                 return $name;
             case 'doc-comment':
                 return 'comment ' . $name;
 
-            // Html
             case 'inline-html':
                 return 'html';
 
-            // Name
             case 'string':
                 return 'name';
 
