@@ -19,8 +19,11 @@ class Highlighter
     /**
      * Extract a specific line from file with $buffer lines around it
      */
-    public function extractFromFile(string $path, int $line, int $buffer = 8): string
-    {
+    public function extractFromFile(
+        string $path,
+        int $line,
+        int $buffer = 8
+    ): string {
         if (!file_exists($path)) {
             return '';
         }
@@ -37,8 +40,11 @@ class Highlighter
     /**
      * Extract a specific line with $buffer lines around it
      */
-    public function extract(string $source, int $line, int $buffer = 8): string
-    {
+    public function extract(
+        string $source,
+        int $line,
+        int $buffer = 8
+    ): string {
         $line = max(1, $line);
         $buffer = min(30, max(1, $buffer));
         $startLine = max(1, $line - $buffer);
@@ -50,8 +56,12 @@ class Highlighter
     /**
      * Highlight PHP source from file from $startLine to $endLine, focussing on $highlight
      */
-    public function highlightFile(string $path, ?int $startLine = null, ?int $endLine = null, ?int $highlight = null): string
-    {
+    public function highlightFile(
+        string $path,
+        ?int $startLine = null,
+        ?int $endLine = null,
+        ?int $highlight = null
+    ): string {
         if (!file_exists($path)) {
             return '';
         }
@@ -68,8 +78,12 @@ class Highlighter
     /**
      * Highlight PHP source from $startLine to $endLine, focussing on $highlight
      */
-    public function highlight(string $source, ?int $startLine = null, ?int $endLine = null, ?int $highlight = null): string
-    {
+    public function highlight(
+        string $source,
+        ?int $startLine = null,
+        ?int $endLine = null,
+        ?int $highlight = null
+    ): string {
         try {
             return $this->processTokens($source, $startLine, $endLine, $highlight);
         } catch (Throwable $e) {
@@ -80,8 +94,12 @@ class Highlighter
     /**
      * Tokenize and highlight file with full parsing
      */
-    protected function processTokens(string $source, ?int $startLine = null, ?int $endLine = null, ?int $highlight = null): string
-    {
+    protected function processTokens(
+        string $source,
+        ?int $startLine = null,
+        ?int $endLine = null,
+        ?int $highlight = null
+    ): string {
         if ($startLine !== null) {
             $startLine = max(1, $startLine);
         }
@@ -227,8 +245,12 @@ class Highlighter
     /**
      * Process raw text without parsing as a fallback
      */
-    protected function processRaw(string $source, ?int $startLine = null, ?int $endLine = null, ?int $highlight = null): string
-    {
+    protected function processRaw(
+        string $source,
+        ?int $startLine = null,
+        ?int $endLine = null,
+        ?int $highlight = null
+    ): string {
         if ($startLine !== null) {
             $startLine = max(1, $startLine);
         }
@@ -274,8 +296,10 @@ class Highlighter
      * @param array<int, mixed> $history
      * @param array<int, mixed> $tokens
      */
-    protected function getNameType(array $history, array $tokens): ?string
-    {
+    protected function getNameType(
+        array $history,
+        array $tokens
+    ): ?string {
         $current = Coercion::toArrayOrNull(array_shift($history));
 
         switch ($current[1] ?? null) {
