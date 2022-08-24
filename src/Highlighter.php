@@ -223,7 +223,7 @@ class Highlighter
         $i = $startLine ?? 1;
 
         if ($startLine > 1) {
-            $output[] = '<span class="line"><span class="number x">…</span></span>';
+            $output[] = '<span class="line"><span class="number x">…</span></span>'; // @ignore-non-ascii
         } else {
             $output[] = '<span class="line spacer"><span class="number x"></span></span>';
         }
@@ -234,7 +234,7 @@ class Highlighter
         }
 
         if ($endLine !== null && $i > $endLine) {
-            $output[] = '<span class="line"><span class="number x">…</span></span>';
+            $output[] = '<span class="line"><span class="number x">…</span></span>'; // @ignore-non-ascii
         } else {
             $output[] = '<span class="line spacer"><span class="number x"></span></span>';
         }
@@ -271,7 +271,7 @@ class Highlighter
         $output = [];
 
         if ($startLine > 1) {
-            $output[] = '<span class="line"><span class="number x">…</span></span>';
+            $output[] = '<span class="line"><span class="number x">…</span></span>'; // @ignore-non-ascii
         } else {
             $output[] = '<span class="line spacer"><span class="number x"></span></span>';
         }
@@ -282,7 +282,7 @@ class Highlighter
         }
 
         if ($endLine !== null && $count > $endLine) {
-            $output[] = '<span class="line"><span class="number x">…</span></span>';
+            $output[] = '<span class="line"><span class="number x">…</span></span>'; // @ignore-non-ascii
         } else {
             $output[] = '<span class="line spacer"><span class="number x"></span></span>';
         }
