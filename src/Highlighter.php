@@ -396,7 +396,6 @@ class Highlighter
                     case \T_NS_SEPARATOR:
                     case \T_INSTANCEOF:
                         return 'class';
-
                 }
 
                 if ($maybeClassReturn) {
