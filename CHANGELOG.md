@@ -1,3 +1,4 @@
+* Fixed PHP8.1 testing
 * Updated CI environment
 
 ## v0.9.0 (2022-08-22)
