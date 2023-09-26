@@ -1,3 +1,8 @@
+## v0.9.1 (2023-09-26)
+* Migrated to use effigy in CI workflow
+* Fixed PHP8.1 testing
+* Updated CI environment
+
 ## v0.9.0 (2022-08-22)
 * Removed PHP7 compatibility
 * Updated ECS to v11
