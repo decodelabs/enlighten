@@ -425,8 +425,9 @@ class Highlighter
     /**
      * Escape a value for HTML
      */
-    protected function esc(?string $value): string
-    {
+    protected function esc(
+        ?string $value
+    ): string {
         if ($value === null) {
             return '';
         }
@@ -438,8 +439,9 @@ class Highlighter
     /**
      * Normalize name
      */
-    protected function normalizeName(string $name): string
-    {
+    protected function normalizeName(
+        string $name
+    ): string {
         switch ($name) {
             case 'abstract':
             case 'array':
