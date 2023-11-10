@@ -2,14 +2,14 @@
     "name": "decodelabs/enlighten",
     "description": "PHP source highlighter",
     "type": "library",
-    "keywords": ["php", "source", "highlighter", "html"],
+    "keywords": [ "php", "source", "highlighter", "html" ],
     "license": "MIT",
-    "authors": [{
-        "name": "Tom Wright",
-        "email": "tom@inflatablecookie.com"
-    }],
+    "authors": [ {
+            "name": "Tom Wright",
+            "email": "tom@inflatablecookie.com"
+        } ],
     "require": {
-        "php": "^8.0",
+        "php": "^8.1",
 
         "decodelabs/coercion": "^0.2",
         "decodelabs/exceptional": "^0.4"
