@@ -1,3 +1,4 @@
+* Added PHP8.4 to CI workflow
 * Made PHP8.1 minimum version
 
 ## v0.9.1 (2023-09-26)
