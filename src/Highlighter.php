@@ -34,7 +34,11 @@ class Highlighter
             );
         }
 
-        return $this->extract($source, $line, $buffer);
+        return $this->extract(
+            source: $source,
+            line: $line,
+            buffer: $buffer
+        );
     }
 
     /**
@@ -50,7 +54,12 @@ class Highlighter
         $startLine = max(1, $line - $buffer);
         $endLine = $line + $buffer;
 
-        return $this->highlight($source, $startLine, $endLine, $line);
+        return $this->highlight(
+            source: $source,
+            startLine: $startLine,
+            endLine: $endLine,
+            highlight: $line
+        );
     }
 
     /**
@@ -72,7 +81,12 @@ class Highlighter
             );
         }
 
-        return $this->highlight($source, $startLine, $endLine, $highlight);
+        return $this->highlight(
+            source: $source,
+            startLine: $startLine,
+            endLine: $endLine,
+            highlight: $highlight
+        );
     }
 
     /**
@@ -85,9 +99,19 @@ class Highlighter
         ?int $highlight = null
     ): string {
         try {
-            return $this->processTokens($source, $startLine, $endLine, $highlight);
+            return $this->processTokens(
+                source: $source,
+                startLine: $startLine,
+                endLine: $endLine,
+                highlight: $highlight
+            );
         } catch (Throwable $e) {
-            return $this->processRaw($source, $startLine, $endLine, $highlight);
+            return $this->processRaw(
+                source: $source,
+                startLine: $startLine,
+                endLine: $endLine,
+                highlight: $highlight
+            );
         }
     }
 
@@ -103,7 +127,11 @@ class Highlighter
         if ($startLine !== null) {
             $startLine = max(1, $startLine);
         }
-        if ($endLine !== null && $startLine === null) {
+
+        if (
+            $endLine !== null &&
+            $startLine === null
+        ) {
             $startLine = 1;
         }
 
@@ -111,9 +139,9 @@ class Highlighter
             $tokens = token_get_all($source, \TOKEN_PARSE);
         } catch (ParseError $e) {
             throw Exceptional::UnexpectedValue(
-                'Unable to parse PHP source',
-                ['previous' => $e],
-                $source
+                message: 'Unable to parse PHP source',
+                previous: $e,
+                data: $source
             );
         }
 
@@ -135,7 +163,10 @@ class Highlighter
                 $name = strtolower(str_replace('_', '-', $name));
 
                 if ($startLine !== null) {
-                    if ($name === 'whitespace' || $name === 'doc-comment') {
+                    if (
+                        $name === 'whitespace' ||
+                        $name === 'doc-comment'
+                    ) {
                         if ($lastLine >= $endLine) {
                             $parts = explode("\x00", str_replace("\n", "\x00\n", $token[1]));
                         } else {
@@ -152,10 +183,14 @@ class Highlighter
                         }
                     }
 
-                    if ($startLine !== null && $lastLine < $startLine) {
+                    if ($lastLine < $startLine) {
                         continue;
                     }
-                    if ($endLine !== null && $lastLine > $endLine) {
+
+                    if (
+                        $endLine !== null &&
+                        $lastLine > $endLine
+                    ) {
                         break;
                     }
                 }
@@ -207,10 +242,16 @@ class Highlighter
 
                 $source .= implode("\n", $inner);
             } else {
-                if ($startLine !== null && $lastLine < $startLine) {
+                if (
+                    $startLine !== null &&
+                    $lastLine < $startLine
+                ) {
                     continue;
                 }
-                if ($endLine !== null && $lastLine > $endLine) {
+                if (
+                    $endLine !== null &&
+                    $lastLine > $endLine
+                ) {
                     break;
                 }
 
@@ -254,7 +295,11 @@ class Highlighter
         if ($startLine !== null) {
             $startLine = max(1, $startLine);
         }
-        if ($endLine !== null && $startLine === null) {
+
+        if (
+            $endLine !== null &&
+            $startLine === null
+        ) {
             $startLine = 1;
         }
 
@@ -281,7 +326,10 @@ class Highlighter
             $output[] = '<span class="line' . ($i === $highlight ? ' highlighted' : null) . '"><span class="number">' . $i . '</span>' . $line . '</span>';
         }
 
-        if ($endLine !== null && $count > $endLine) {
+        if (
+            $endLine !== null &&
+            $count > $endLine
+        ) {
             $output[] = '<span class="line"><span class="number x">…</span></span>'; // @ignore-non-ascii
         } else {
             $output[] = '<span class="line spacer"><span class="number x"></span></span>';
@@ -412,7 +460,10 @@ class Highlighter
 
                 switch ($token) {
                     case ':':
-                        if ($tokens[0] === '{' || $tokens[1] === '{') {
+                        if (
+                            $tokens[0] === '{' ||
+                            $tokens[1] === '{'
+                        ) {
                             return 'class return';
                         }
                 }
@@ -425,8 +476,9 @@ class Highlighter
     /**
      * Escape a value for HTML
      */
-    protected function esc(?string $value): string
-    {
+    protected function esc(
+        ?string $value
+    ): string {
         if ($value === null) {
             return '';
         }
@@ -438,8 +490,9 @@ class Highlighter
     /**
      * Normalize name
      */
-    protected function normalizeName(string $name): string
-    {
+    protected function normalizeName(
+        string $name
+    ): string {
         switch ($name) {
             case 'abstract':
             case 'array':
