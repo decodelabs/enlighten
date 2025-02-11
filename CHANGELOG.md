@@ -1,5 +1,8 @@
+## v0.9.2 (2025-02-11)
+* Upgraded PHPStan to v2
+* Upgraded Exception handling
 * Added PHP8.4 to CI workflow
-* Made PHP8.1 minimum version
+* Made PHP8.4 minimum version
 
 ## v0.9.1 (2023-09-26)
 * Migrated to use effigy in CI workflow
