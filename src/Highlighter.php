@@ -30,7 +30,7 @@ class Highlighter
 
         if (false === ($source = file_get_contents($path))) {
             throw Exceptional::Io(
-                'Could not load source from file: ' . $path
+                message: 'Could not load source from file: ' . $path
             );
         }
 
@@ -77,7 +77,7 @@ class Highlighter
 
         if (false === ($source = file_get_contents($path))) {
             throw Exceptional::Io(
-                'Could not load source from file: ' . $path
+                message: 'Could not load source from file: ' . $path
             );
         }
 
