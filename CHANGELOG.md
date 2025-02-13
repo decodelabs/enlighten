@@ -1,4 +1,5 @@
 * Improved Exception syntax
+* Tidied boolean logic
 * Updated dependencies
 
 ## v0.9.2 (2025-02-11)

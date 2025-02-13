@@ -274,7 +274,10 @@ class Highlighter
             $i++;
         }
 
-        if ($endLine !== null && $i > $endLine) {
+        if (
+            $endLine !== null &&
+            $i > $endLine
+        ) {
             $output[] = '<span class="line"><span class="number x">…</span></span>'; // @ignore-non-ascii
         } else {
             $output[] = '<span class="line spacer"><span class="number x"></span></span>';
