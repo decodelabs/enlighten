@@ -351,7 +351,7 @@ class Highlighter
         array $history,
         array $tokens
     ): ?string {
-        $current = Coercion::toArrayOrNull(array_shift($history));
+        $current = Coercion::tryArray(array_shift($history));
 
         switch ($current[1] ?? null) {
             case 'null':
@@ -399,7 +399,7 @@ class Highlighter
         if (
             preg_match(
                 '/^[A-Z_]+$/',
-                Coercion::toStringOrNull($current[1] ?? null) ?? ''
+                Coercion::tryString($current[1] ?? null) ?? ''
             ) &&
             !$maybeFunction
         ) {
