@@ -30,7 +30,7 @@ class Highlighter
 
         if (false === ($source = file_get_contents($path))) {
             throw Exceptional::Io(
-                'Could not load source from file: ' . $path
+                message: 'Could not load source from file: ' . $path
             );
         }
 
@@ -77,7 +77,7 @@ class Highlighter
 
         if (false === ($source = file_get_contents($path))) {
             throw Exceptional::Io(
-                'Could not load source from file: ' . $path
+                message: 'Could not load source from file: ' . $path
             );
         }
 
@@ -274,7 +274,10 @@ class Highlighter
             $i++;
         }
 
-        if ($endLine !== null && $i > $endLine) {
+        if (
+            $endLine !== null &&
+            $i > $endLine
+        ) {
             $output[] = '<span class="line"><span class="number x">…</span></span>'; // @ignore-non-ascii
         } else {
             $output[] = '<span class="line spacer"><span class="number x"></span></span>';
@@ -348,7 +351,7 @@ class Highlighter
         array $history,
         array $tokens
     ): ?string {
-        $current = Coercion::toArrayOrNull(array_shift($history));
+        $current = Coercion::tryArray(array_shift($history));
 
         switch ($current[1] ?? null) {
             case 'null':
@@ -396,7 +399,7 @@ class Highlighter
         if (
             preg_match(
                 '/^[A-Z_]+$/',
-                Coercion::toStringOrNull($current[1] ?? null) ?? ''
+                Coercion::tryString($current[1] ?? null) ?? ''
             ) &&
             !$maybeFunction
         ) {
