@@ -11,8 +11,6 @@
 
 Enlighten provides exhaustive and accurate PHP source highlighting for use in debugging systems.
 
-_Get news and updates on the [DecodeLabs blog](https://blog.decodelabs.com)._
-
 ---
 
 ## Installation
