@@ -12,7 +12,7 @@
         "php": "^8.4",
 
         "decodelabs/coercion": "^0.3",
-        "decodelabs/exceptional": "^0.5.2"
+        "decodelabs/exceptional": "^0.6"
     },
     "require-dev": {
         "decodelabs/phpstan-decodelabs": "^0.7"
