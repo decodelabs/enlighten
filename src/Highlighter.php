@@ -16,9 +16,6 @@ use Throwable;
 
 class Highlighter
 {
-    /**
-     * Extract a specific line from file with $buffer lines around it
-     */
     public function extractFromFile(
         string $path,
         int $line,
@@ -41,9 +38,6 @@ class Highlighter
         );
     }
 
-    /**
-     * Extract a specific line with $buffer lines around it
-     */
     public function extract(
         string $source,
         int $line,
@@ -62,9 +56,6 @@ class Highlighter
         );
     }
 
-    /**
-     * Highlight PHP source from file from $startLine to $endLine, focussing on $highlight
-     */
     public function highlightFile(
         string $path,
         ?int $startLine = null,
@@ -89,9 +80,6 @@ class Highlighter
         );
     }
 
-    /**
-     * Highlight PHP source from $startLine to $endLine, focussing on $highlight
-     */
     public function highlight(
         string $source,
         ?int $startLine = null,
@@ -115,9 +103,6 @@ class Highlighter
         }
     }
 
-    /**
-     * Tokenize and highlight file with full parsing
-     */
     protected function processTokens(
         string $source,
         ?int $startLine = null,
@@ -286,9 +271,6 @@ class Highlighter
         return '<samp class="source">' . implode("\n", $output) . '</samp>';
     }
 
-    /**
-     * Process raw text without parsing as a fallback
-     */
     protected function processRaw(
         string $source,
         ?int $startLine = null,
@@ -342,8 +324,6 @@ class Highlighter
     }
 
     /**
-     * Attempt to parse name token type
-     *
      * @param array<int, mixed> $history
      * @param array<int, mixed> $tokens
      */
@@ -476,9 +456,6 @@ class Highlighter
         return null;
     }
 
-    /**
-     * Escape a value for HTML
-     */
     protected function esc(
         ?string $value
     ): string {
@@ -490,9 +467,6 @@ class Highlighter
     }
 
 
-    /**
-     * Normalize name
-     */
     protected function normalizeName(
         string $name
     ): string {
@@ -675,9 +649,6 @@ class Highlighter
     }
 
 
-    /**
-     * Export inline style tag
-     */
     public function exportInlineStyles(): string
     {
         return '<style>' . "\n" . file_get_contents(__DIR__ . '/resources/styles.css') . "\n" . '</style>';
