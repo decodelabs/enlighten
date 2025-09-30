@@ -15,7 +15,9 @@ Enlighten provides exhaustive and accurate PHP source highlighting for use in de
 
 ## Installation
 
-Install using Composer:
+This package requires PHP 8.4 or higher.
+
+Install via Composer:
 
 ```bash
 composer require decodelabs/enlighten
