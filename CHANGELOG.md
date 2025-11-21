@@ -6,6 +6,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Unreleased
 - Improved doc comment headers
+- Added AGENTS.md
+- Integrated Chorus dev dependency
 - Simplified CI workflow
 
 ---
@@ -172,3 +174,4 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### [v0.5.0](https://github.com/decodelabs/enlighten/commits/v0.5.0) - 30th September 2019
 
 - Imported initial Codebase from Glitch
+
